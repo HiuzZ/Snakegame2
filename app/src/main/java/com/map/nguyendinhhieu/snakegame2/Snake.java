@@ -2,6 +2,7 @@ package com.map.nguyendinhhieu.snakegame2;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class Snake {
             bm_body_top_right, bm_body_top_left, bm_body_bottom_right, bm_body_bottom_left, bm_tail_right, bm_tail_left,
             bm_tail_up, bm_tail_down;
     private int x, y, length;
+    private final int initialX, initialY, initialLength;
     private ArrayList<PartSnake> arrPartSnake = new ArrayList<>();
 
     public Snake(Bitmap bm, int x, int y, int length) {
@@ -18,6 +20,9 @@ public class Snake {
         this.x = x;
         this.y = y;
         this.length = length;
+        this.initialX = x;
+        this.initialY = y;
+        this.initialLength = length;
         bm_body_bottom_left = Bitmap.createBitmap(bm, 0, 0, GameView.sizeOfMap, GameView.sizeOfMap);
         bm_body_bottom_right = Bitmap.createBitmap(bm, GameView.sizeOfMap, 0, GameView.sizeOfMap, GameView.sizeOfMap);
         bm_body_horizontal = Bitmap.createBitmap(bm, 2*GameView.sizeOfMap, 0, GameView.sizeOfMap, GameView.sizeOfMap);
@@ -37,6 +42,19 @@ public class Snake {
             arrPartSnake.add(new PartSnake(bm_body_horizontal, arrPartSnake.get(i-1).getX() - GameView.sizeOfMap, y));
         }
         arrPartSnake.add(new PartSnake(bm_tail_right, arrPartSnake.get(length-2).getX() - GameView.sizeOfMap, y));
+        setMove_right(true);
+    }
+
+    private void resetSnakePosition() {
+        arrPartSnake.clear();
+        arrPartSnake.add(new PartSnake(bm_head_right, initialX, initialY));
+
+        for (int i = 1; i < initialLength - 1; i++) {
+            arrPartSnake.add(new PartSnake(bm_body_horizontal, arrPartSnake.get(i - 1).getX() - GameView.sizeOfMap, initialY));
+        }
+        arrPartSnake.add(new PartSnake(bm_tail_right, arrPartSnake.get(initialLength - 2).getX() - GameView.sizeOfMap, initialY));
+
+        s();
         setMove_right(true);
     }
 
@@ -101,6 +119,13 @@ public class Snake {
             arrPartSnake.get(length-1).setBm(bm_tail_down);
         }
     }
+
+    public void resetGame() {
+        this.length = initialLength;
+        resetSnakePosition();        
+        Log.d("SnakeGame", "Game reset to initial state");
+    }
+
 
     public void draw(Canvas canvas) {
         for (int i = 0; i < length; i++) {
