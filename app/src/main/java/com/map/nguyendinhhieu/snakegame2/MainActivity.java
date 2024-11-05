@@ -38,5 +38,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        // Retrieve TextView and GameView instances after setting content view
+        txtScore = findViewById(R.id.txt_score);
+        txtBestScore = findViewById(R.id.txt_best_score);
+        gameView = findViewById(R.id.gv);
+
+        // Initialize GameView with TextViews
+        gameView.init(txtScore, txtBestScore);
     }
 }
+

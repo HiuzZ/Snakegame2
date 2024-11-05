@@ -79,9 +79,11 @@ public class GameView extends View {
         };
     }
 
+
     public void setGameOverListener(GameOverListener listener) {
         this.gameOverListener = listener;
     }
+
     // Custom init method to set TextViews after MainActivity sets them up
     public void init(TextView txtScore, TextView txtBestScore) {
         this.txtScore = txtScore;
