@@ -1,4 +1,4 @@
-package com.map.nguyendinhhieu.snakegame2;
+package com.map.nguyendinhhieu.snakegame2.contants;
 
 public class Constants {
     public static int SCREEN_WIDTH;

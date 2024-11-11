@@ -1,7 +1,10 @@
-package com.map.nguyendinhhieu.snakegame2;
+package com.map.nguyendinhhieu.snakegame2.snake;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+
+import com.map.nguyendinhhieu.snakegame2.contants.Constants;
+import com.map.nguyendinhhieu.snakegame2.gameview.GameView;
 
 public class PartSnake {
     private Bitmap bm;
@@ -39,7 +42,7 @@ public class PartSnake {
     }
 
     public Rect getrBody() {
-        return new Rect(this.x, this.y, this.x+GameView.sizeOfMap, this.y+GameView.sizeOfMap);
+        return new Rect(this.x, this.y, this.x+ GameView.sizeOfMap, this.y+GameView.sizeOfMap);
     }
 
     public void setrBody(Rect rBody) {
@@ -47,7 +50,7 @@ public class PartSnake {
     }
 
     public Rect getrTop() {
-        return new Rect(this.x, this.y-10*Constants.SCREEN_HEIGHT/1920, this.x+GameView.sizeOfMap, this.y);
+        return new Rect(this.x, this.y-10* Constants.SCREEN_HEIGHT/1920, this.x+GameView.sizeOfMap, this.y);
     }
 
     public void setrTop(Rect rTop) {

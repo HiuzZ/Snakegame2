@@ -1,4 +1,4 @@
-package com.map.nguyendinhhieu.snakegame2;
+package com.map.nguyendinhhieu.snakegame2.map;
 
 import android.graphics.Bitmap;
 

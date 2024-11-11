@@ -1,8 +1,10 @@
-package com.map.nguyendinhhieu.snakegame2;
+package com.map.nguyendinhhieu.snakegame2.foods;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+
+import com.map.nguyendinhhieu.snakegame2.gameview.GameView;
 
 public class Apple {
     private Bitmap bm;
@@ -40,7 +42,7 @@ public class Apple {
     }
 
     public Rect getR() {
-        return new Rect(this.x, this.y, this.x+GameView.sizeOfMap, this.y+GameView.sizeOfMap);
+        return new Rect(this.x, this.y, this.x+ GameView.sizeOfMap, this.y+GameView.sizeOfMap);
     }
 
     public void setR(Rect r) {

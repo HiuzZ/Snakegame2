@@ -7,6 +7,10 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.map.nguyendinhhieu.snakegame2.activities.StartActivity;
+import com.map.nguyendinhhieu.snakegame2.contants.Constants;
+import com.map.nguyendinhhieu.snakegame2.gameview.GameView;
+
 public class MainActivity extends AppCompatActivity {
     private TextView txtScore;
     private TextView txtBestScore;
@@ -22,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
 
+        // Get the selected map type from the intent
+        final String mapType = getIntent().getStringExtra("MAP_TYPE");
+        String currentMapType = (mapType != null) ? mapType : "Jungle"; // Default to Jungle if null
+
         setContentView(R.layout.activity_main);
 
         txtScore = findViewById(R.id.txt_score);
@@ -29,22 +37,20 @@ public class MainActivity extends AppCompatActivity {
         gameView = findViewById(R.id.gv);
         gameView.init(txtScore, txtBestScore);
 
+        // Set up the map type in GameView
+        gameView.setMap(currentMapType);
+
         // Listen for game over event from GameView
         gameView.setGameOverListener(() -> {
-            // On game over, set an intent flag to switch the play button to replay mode
             Intent intent = new Intent(MainActivity.this, StartActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("GAME_OVER", true);  // Pass the game-over flag
+
+            // Include the current MAP_TYPE in the intent
+            intent.putExtra("MAP_TYPE", currentMapType);
+            intent.putExtra("GAME_OVER", true); // Indicate game-over state
+
             startActivity(intent);
             finish();
         });
-        // Retrieve TextView and GameView instances after setting content view
-        txtScore = findViewById(R.id.txt_score);
-        txtBestScore = findViewById(R.id.txt_best_score);
-        gameView = findViewById(R.id.gv);
-
-        // Initialize GameView with TextViews
-        gameView.init(txtScore, txtBestScore);
     }
 }
-

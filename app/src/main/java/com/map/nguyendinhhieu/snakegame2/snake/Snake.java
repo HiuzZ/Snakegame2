@@ -1,8 +1,10 @@
-package com.map.nguyendinhhieu.snakegame2;
+package com.map.nguyendinhhieu.snakegame2.snake;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.Log;
+
+import com.map.nguyendinhhieu.snakegame2.gameview.GameView;
 
 import java.util.ArrayList;
 
