@@ -15,6 +15,7 @@ public class LevelActivity extends AppCompatActivity {
 
         Button jungleButton = findViewById(R.id.btn_jungle);
         Button desertButton = findViewById(R.id.btn_desert);
+        Button arcticButton = findViewById(R.id.btn_arctic);
 
         jungleButton.setOnClickListener(v -> {
             Intent intent = new Intent(LevelActivity.this, StartActivity.class);
@@ -26,6 +27,13 @@ public class LevelActivity extends AppCompatActivity {
         desertButton.setOnClickListener(v -> {
             Intent intent = new Intent(LevelActivity.this, StartActivity.class);
             intent.putExtra("MAP_TYPE", "Desert");
+            startActivity(intent);
+            finish(); // Close LevelActivity
+        });
+
+        arcticButton.setOnClickListener(v -> {
+            Intent intent = new Intent(LevelActivity.this, StartActivity.class);
+            intent.putExtra("MAP_TYPE", "Arctic");
             startActivity(intent);
             finish(); // Close LevelActivity
         });

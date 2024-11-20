@@ -98,6 +98,9 @@ public class GameView extends View {
 
             bmCactus1x2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.cactus1x2);
             bmCactus1x2 = Bitmap.createScaledBitmap(bmCactus1x2, sizeOfMap, 2 * sizeOfMap, true);
+        } else if (mapType.equals("Arctic")) {
+            bmGrass1 = BitmapFactory.decodeResource(this.getResources(), R.drawable.ice);
+            bmGrass2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.ice);
         }
 
         bmGrass1 = Bitmap.createScaledBitmap(bmGrass1, sizeOfMap, sizeOfMap, true);
@@ -226,6 +229,8 @@ public class GameView extends View {
             canvas.drawColor(0xFF1A6100);  // Jungle background
         } else if (currentMap.equals("Desert")) {
             canvas.drawColor(0xFFFFD27F);  // Desert background
+        } else if (currentMap.equals("Arctic")) {
+            canvas.drawColor(0xFFB3E5FC);  // Arctic background
         }
 
         // Draw grass tiles
@@ -343,8 +348,13 @@ public class GameView extends View {
         }
 
         // Schedule next frame
-        int delay = Math.max(50, 200 - score * 5);
-        handler.postDelayed(r, delay);
+        if(currentMap.equals("Arctic")) {
+            int delay = Math.max(50, 100 - score * 5);
+            handler.postDelayed(r, delay);
+        } else {
+            int delay = Math.max(50, 200 - score * 5);
+            handler.postDelayed(r, delay);
+        }
     }
 
     public int[] randomApple() {
